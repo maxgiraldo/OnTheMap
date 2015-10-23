@@ -3,12 +3,18 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Map-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -51,7 +57,7 @@
         <!--List-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="ListViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -111,9 +117,69 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="C0R-3f-qWF">
+            <objects>
+                <viewController storyboardIdentifier="Login" id="HWP-xd-Khg" customClass="LoginViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Vp-CL-meZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="i7k-YW-2wf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BWj-gN-jvt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacity" translatesAutoresizingMaskIntoConstraints="NO" id="yYH-CS-7bO">
+                                <rect key="frame" x="222" y="51" width="156" height="156"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="JfJ-z7-NkG"/>
+                                    <constraint firstAttribute="width" constant="156" id="YhB-Hx-kGM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Yj-HD-THf">
+                                <rect key="frame" x="216" y="219" width="168.5" height="27"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ee-0Z-CcM" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
+                                <rect key="frame" x="20" y="265" width="560" height="49"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="89Q-La-HX5"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="1" green="0.66942307077636742" blue="0.052343103325420026" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Ee-0Z-CcM" secondAttribute="trailing" id="9Z1-b4-Roa"/>
+                            <constraint firstItem="2Yj-HD-THf" firstAttribute="centerX" secondItem="BWj-gN-jvt" secondAttribute="centerX" id="JDP-GB-MKf"/>
+                            <constraint firstItem="2Ee-0Z-CcM" firstAttribute="top" secondItem="2Yj-HD-THf" secondAttribute="bottom" constant="19.5" id="JpW-lm-WO1"/>
+                            <constraint firstItem="2Yj-HD-THf" firstAttribute="top" secondItem="yYH-CS-7bO" secondAttribute="bottom" constant="12" id="TVF-Uk-e3r"/>
+                            <constraint firstItem="yYH-CS-7bO" firstAttribute="top" secondItem="8Vp-CL-meZ" secondAttribute="bottom" constant="31" id="aCk-QS-X3a"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2Ee-0Z-CcM" secondAttribute="leading" id="cbn-6V-17U"/>
+                            <constraint firstItem="yYH-CS-7bO" firstAttribute="centerX" secondItem="BWj-gN-jvt" secondAttribute="centerX" id="fdQ-M6-z9A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="2Ee-0Z-CcM" id="Ghy-GL-jLq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuw-7p-Dsl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="693"/>
+        </scene>
     </scenes>
     <resources>
         <image name="first" width="32" height="32"/>
         <image name="second" width="32" height="32"/>
+        <image name="udacity" width="256" height="256"/>
     </resources>
 </document>

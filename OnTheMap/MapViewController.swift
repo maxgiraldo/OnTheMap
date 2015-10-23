@@ -15,15 +15,16 @@ class MapViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
   }
 
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
     
     // 1. Login
     login()
   }
   
   func login() {
-    
+    let loginController = self.storyboard!.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+    self.presentViewController(loginController, animated: false, completion: nil)
   }
   
   
