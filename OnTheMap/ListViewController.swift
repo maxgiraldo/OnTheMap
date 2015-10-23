@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  ListViewController.swift
 //  OnTheMap
 //
 //  Created by Maximilian A. Giraldo on 10/23/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class ListViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
