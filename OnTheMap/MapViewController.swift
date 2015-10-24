@@ -7,27 +7,37 @@
 //
 
 import UIKit
+import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
   }
-
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
+  
+  //MARK: - MapView delegate
+  
+  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    let reuseId = ""
+    let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
     
-    // 1. Login
-    login()
+    return annotationView
   }
   
-  func login() {
-    let loginController = self.storyboard!.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
-    self.presentViewController(loginController, animated: false, completion: nil)
+  //MARK: - Map data population
+  
+  func displayLast100Users() {
+    //TODO: pins specifying the last 100 locations posted by students.
+    
   }
   
+  func dropPin() {
+    let point = CLLocationCoordinate2D(latitude: 53.58448, longitude: -8.93772)
+//    AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:ctrpoint];
+//    [mapview addAnnotation:addAnnotation];
+//    [addAnnotation release];
+  }
   
-
 }
 

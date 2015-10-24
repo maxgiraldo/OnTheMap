@@ -15,6 +15,13 @@
 		508916DF1BDAB2C0003AF608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508916DD1BDAB2C0003AF608 /* LaunchScreen.storyboard */; };
 		508916E71BDAB872003AF608 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508916E61BDAB872003AF608 /* LoginViewController.swift */; };
 		508916ED1BDAD54A003AF608 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508916EC1BDAD54A003AF608 /* TextField.swift */; };
+		508916F21BDB5571003AF608 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508916EF1BDAD6D0003AF608 /* Roboto-Medium.ttf */; };
+		508916F31BDB5571003AF608 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508916F01BDAD6D0003AF608 /* Roboto-Regular.ttf */; };
+		508916F41BDB5571003AF608 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508916F11BDAD6D0003AF608 /* Roboto-Thin.ttf */; };
+		508916F91BDBF567003AF608 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508916F81BDBF567003AF608 /* HTTPHelper.swift */; };
+		508916FB1BDBF873003AF608 /* Udacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508916FA1BDBF873003AF608 /* Udacity.swift */; };
+		508916FF1BDC0000003AF608 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508916FE1BDC0000003AF608 /* MapKit.framework */; };
+		508917011BDC00BB003AF608 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508917001BDC00BB003AF608 /* ParseHelper.swift */; };
 		7EC72B83792D887F77CCBD54 /* libPods-OnTheMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5808FDC81E3DED7EC54D37FF /* libPods-OnTheMap.a */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +40,10 @@
 		508916EF1BDAD6D0003AF608 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		508916F01BDAD6D0003AF608 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		508916F11BDAD6D0003AF608 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		508916F81BDBF567003AF608 /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
+		508916FA1BDBF873003AF608 /* Udacity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Udacity.swift; sourceTree = "<group>"; };
+		508916FE1BDC0000003AF608 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		508917001BDC00BB003AF608 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		5808FDC81E3DED7EC54D37FF /* libPods-OnTheMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnTheMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BDA3C61037501AB8143D06 /* Pods-OnTheMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C161DB03C1FDFBF940983 /* Pods-OnTheMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.release.xcconfig"; sourceTree = "<group>"; };
@@ -43,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508916FF1BDC0000003AF608 /* MapKit.framework in Frameworks */,
 				7EC72B83792D887F77CCBD54 /* libPods-OnTheMap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +83,7 @@
 		508916D11BDAB2C0003AF608 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				508916F51BDBE340003AF608 /* Libraries */,
 				508916EE1BDAD6C6003AF608 /* Resources */,
 				508916EB1BDAD535003AF608 /* Overrides */,
 				508916D21BDAB2C0003AF608 /* AppDelegate.swift */,
@@ -104,9 +117,20 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		508916F51BDBE340003AF608 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				508916F81BDBF567003AF608 /* HTTPHelper.swift */,
+				508916FA1BDBF873003AF608 /* Udacity.swift */,
+				508917001BDC00BB003AF608 /* ParseHelper.swift */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		5526FBBA581AAB5C0A05416F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				508916FE1BDC0000003AF608 /* MapKit.framework */,
 				5808FDC81E3DED7EC54D37FF /* libPods-OnTheMap.a */,
 			);
 			name = Frameworks;
@@ -181,6 +205,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508916F21BDB5571003AF608 /* Roboto-Medium.ttf in Resources */,
+				508916F31BDB5571003AF608 /* Roboto-Regular.ttf in Resources */,
+				508916F41BDB5571003AF608 /* Roboto-Thin.ttf in Resources */,
 				508916DF1BDAB2C0003AF608 /* LaunchScreen.storyboard in Resources */,
 				508916DC1BDAB2C0003AF608 /* Assets.xcassets in Resources */,
 				508916DA1BDAB2C0003AF608 /* Main.storyboard in Resources */,
@@ -228,8 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				508916E71BDAB872003AF608 /* LoginViewController.swift in Sources */,
+				508917011BDC00BB003AF608 /* ParseHelper.swift in Sources */,
 				508916D71BDAB2C0003AF608 /* ListViewController.swift in Sources */,
 				508916D31BDAB2C0003AF608 /* AppDelegate.swift in Sources */,
+				508916F91BDBF567003AF608 /* HTTPHelper.swift in Sources */,
+				508916FB1BDBF873003AF608 /* Udacity.swift in Sources */,
 				508916ED1BDAD54A003AF608 /* TextField.swift in Sources */,
 				508916D51BDAB2C0003AF608 /* MapViewController.swift in Sources */,
 			);
