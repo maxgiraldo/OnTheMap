@@ -45,7 +45,7 @@ class Udacity {
       
       do {
         parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-        print(parsedResult)
+
         guard let session = parsedResult["session"] as? [String: String] else {
           print("Failed to get session from Udacity's servers")
           
