@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular.ttf">
@@ -31,6 +32,19 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <animations/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1a6-mz-866">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <navigationItem title="On The Map" id="loJ-br-h0E">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="eta-kt-amg"/>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="refresh" id="nId-md-HYS"/>
+                                            <barButtonItem image="pin" id="LJX-Kv-vk8"/>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -38,6 +52,9 @@
                             <constraint firstItem="7Fe-XF-zKi" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="7hg-tG-g1q"/>
                             <constraint firstAttribute="trailing" secondItem="7Fe-XF-zKi" secondAttribute="trailing" id="H4s-Vd-2q6"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="7Fe-XF-zKi" secondAttribute="bottom" id="OGs-lG-efS"/>
+                            <constraint firstItem="1a6-mz-866" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="PUs-6q-A9E"/>
+                            <constraint firstItem="1a6-mz-866" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="dlQ-eT-IQI"/>
+                            <constraint firstAttribute="trailing" secondItem="1a6-mz-866" secondAttribute="trailing" id="k4e-ud-fxd"/>
                             <constraint firstItem="7Fe-XF-zKi" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="mm5-z3-CNU"/>
                         </constraints>
                     </view>
@@ -258,6 +275,7 @@
     </scenes>
     <resources>
         <image name="first" width="32" height="32"/>
+        <image name="pin" width="32" height="32"/>
         <image name="second" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>
     </resources>
