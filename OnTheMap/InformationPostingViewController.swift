@@ -14,12 +14,22 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var findOnMapButton: UIButton!
   @IBOutlet weak var bottomView: UIView!
+  @IBOutlet weak var topView: UIView!
+  @IBOutlet weak var mapView: MKMapView!
+  @IBOutlet weak var enterLink: UITextField!
+  @IBOutlet weak var submitButton: UIButton!
+  @IBOutlet weak var blueView: UIView!
+  @IBOutlet weak var mainLabel: UILabel!
+  
+  var coordinates: CLLocationCoordinate2D?
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
     findOnMapButton.layer.cornerRadius = 4
+    submitButton.layer.cornerRadius = 4
+    submitButton.clipsToBounds = true
     textField.delegate = self
   }
   
@@ -39,16 +49,47 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
       }
       
       let region = localSearchResponse.boundingRegion
-      let coordinates = region.center
-      let lat = coordinates.latitude
-      let long = coordinates.longitude
-      print("Lat: \(lat)")
-      print("Long: \(long)")
+      self.coordinates = region.center
+      
+      self.transitionToMap()
     })
   }
   
   @IBAction func cancelButtonTapped(sender: AnyObject) {
     self.dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  //MARK: - UI
+  
+  func hideSearchView() {
+    findOnMapButton.hidden = true
+    blueView.hidden = true
+    mainLabel.hidden = true
+  }
+  
+  func unhideMapView() {
+    bottomView.alpha = 0.5
+    mapView.hidden = false
+    submitButton.hidden = false
+    enterLink.hidden = false
+  }
+  
+  func transitionToMap() {
+    hideSearchView()
+    unhideMapView()
+    
+    let annotation = MKPointAnnotation()
+    guard let coords = coordinates else {
+      errorAlert("Place Not Found")
+      return
+    }
+    annotation.coordinate = coords
+    annotation.title = textField.text!
+
+    let span = MKCoordinateSpanMake(0.1, 0.1)
+    let region = MKCoordinateRegionMake(coords, span)
+    mapView.addAnnotation(annotation)
+    mapView.region = region
   }
   
   //MARK: - Helper methods

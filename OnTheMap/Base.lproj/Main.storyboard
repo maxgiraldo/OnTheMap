@@ -15,6 +15,8 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="Roboto-Thin.ttf">
             <string>Roboto-Thin</string>
@@ -93,8 +95,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mcM-Zh-ucq">
-                                <rect key="frame" x="0.0" y="187" width="600" height="413"/>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mcM-Zh-ucq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxX-3w-Q0Q" userLabel="Blue view">
@@ -115,6 +117,26 @@
                                     <constraint firstItem="2Ye-kg-T2p" firstAttribute="top" secondItem="bxX-3w-Q0Q" secondAttribute="top" constant="26" id="FTf-dB-eNN"/>
                                     <constraint firstItem="2Ye-kg-T2p" firstAttribute="leading" secondItem="bxX-3w-Q0Q" secondAttribute="leading" constant="8" id="Gj8-sB-KZU"/>
                                     <constraint firstAttribute="trailing" secondItem="2Ye-kg-T2p" secondAttribute="trailing" constant="8" id="S47-Yj-0sx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIN-IW-5eb" userLabel="Top view">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="188"/>
+                                <subviews>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f8b-DU-qOz" userLabel="Enter link">
+                                        <rect key="frame" x="8" y="82" width="584" height="25"/>
+                                        <animations/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.89563630760000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="f8b-DU-qOz" firstAttribute="top" secondItem="dIN-IW-5eb" secondAttribute="top" constant="82" id="B81-gU-7Z5"/>
+                                    <constraint firstAttribute="trailing" secondItem="f8b-DU-qOz" secondAttribute="trailing" constant="8" id="a8Y-PD-3oj"/>
+                                    <constraint firstItem="f8b-DU-qOz" firstAttribute="centerX" secondItem="dIN-IW-5eb" secondAttribute="centerX" id="ahs-kU-6ak"/>
+                                    <constraint firstItem="f8b-DU-qOz" firstAttribute="leading" secondItem="dIN-IW-5eb" secondAttribute="leading" constant="8" id="mTx-wy-Wib"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-Ma-TBn">
@@ -153,36 +175,62 @@
                                     <action selector="cancelButtonTapped:" destination="XeG-9D-V7E" eventType="touchUpInside" id="8bO-Vy-3OK"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5T2-hy-xC2" userLabel="Submit Button">
+                                <rect key="frame" x="248" y="507" width="104" height="37"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Xy9-zL-JDt"/>
+                                    <constraint firstAttribute="width" constant="104" id="n9Z-s8-0d9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="findOnMapButtonTapped:" destination="XeG-9D-V7E" eventType="touchUpInside" id="N2E-xR-zcS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bxX-3w-Q0Q" firstAttribute="leading" secondItem="1Z7-5E-yZU" secondAttribute="leading" id="0XG-Ab-7ik"/>
                             <constraint firstItem="eCS-NE-ulG" firstAttribute="centerX" secondItem="1Z7-5E-yZU" secondAttribute="centerX" id="3oB-lr-iar"/>
+                            <constraint firstItem="dIN-IW-5eb" firstAttribute="top" secondItem="1Z7-5E-yZU" secondAttribute="top" id="5wS-yW-sQv"/>
+                            <constraint firstItem="vpL-Xx-Ghk" firstAttribute="top" secondItem="mcM-Zh-ucq" secondAttribute="bottom" id="9Bz-67-BRm"/>
                             <constraint firstItem="vpL-Xx-Ghk" firstAttribute="top" secondItem="ruo-uS-F8l" secondAttribute="bottom" id="9Iz-is-9ZV"/>
+                            <constraint firstAttribute="trailing" secondItem="dIN-IW-5eb" secondAttribute="trailing" id="A3C-ec-Lrf"/>
                             <constraint firstItem="eCS-NE-ulG" firstAttribute="top" secondItem="bxX-3w-Q0Q" secondAttribute="bottom" constant="53" id="BSx-L4-pcD"/>
-                            <constraint firstItem="vpL-Xx-Ghk" firstAttribute="top" secondItem="mcM-Zh-ucq" secondAttribute="bottom" id="BkX-MD-sX5"/>
                             <constraint firstItem="ruo-uS-F8l" firstAttribute="leading" secondItem="1Z7-5E-yZU" secondAttribute="leading" id="Eyu-Mq-o4X"/>
                             <constraint firstItem="58r-Ma-TBn" firstAttribute="leading" secondItem="1Z7-5E-yZU" secondAttribute="leadingMargin" constant="69" id="Gsy-r2-XQc"/>
+                            <constraint firstItem="5T2-hy-xC2" firstAttribute="centerX" secondItem="1Z7-5E-yZU" secondAttribute="centerX" id="IXc-fF-IcM"/>
                             <constraint firstItem="58r-Ma-TBn" firstAttribute="top" secondItem="WfP-3w-1gd" secondAttribute="bottom" constant="8" id="JNR-tJ-M84"/>
+                            <constraint firstItem="5T2-hy-xC2" firstAttribute="top" secondItem="bxX-3w-Q0Q" secondAttribute="bottom" constant="54" id="LY3-zH-Ycj"/>
+                            <constraint firstAttribute="trailing" secondItem="mcM-Zh-ucq" secondAttribute="trailing" id="MHc-wg-Qkk"/>
                             <constraint firstAttribute="trailing" secondItem="bxX-3w-Q0Q" secondAttribute="trailing" id="OGf-G1-dMd"/>
                             <constraint firstItem="ruo-uS-F8l" firstAttribute="top" secondItem="bxX-3w-Q0Q" secondAttribute="bottom" constant="-1" id="PIh-Az-FcE"/>
                             <constraint firstItem="vpL-Xx-Ghk" firstAttribute="top" secondItem="bxX-3w-Q0Q" secondAttribute="bottom" constant="147" id="Wen-yc-yjH"/>
                             <constraint firstItem="bxX-3w-Q0Q" firstAttribute="top" secondItem="58r-Ma-TBn" secondAttribute="bottom" constant="24" id="XdP-p5-0mG"/>
+                            <constraint firstItem="bxX-3w-Q0Q" firstAttribute="top" secondItem="dIN-IW-5eb" secondAttribute="bottom" constant="-1" id="Yfd-dq-PS1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cE0-5P-7lO" secondAttribute="trailing" id="bdQ-HG-rdu"/>
-                            <constraint firstAttribute="trailing" secondItem="mcM-Zh-ucq" secondAttribute="trailing" id="cGF-g5-aUe"/>
                             <constraint firstItem="cE0-5P-7lO" firstAttribute="top" secondItem="WfP-3w-1gd" secondAttribute="bottom" id="eFd-Kx-OK3"/>
-                            <constraint firstItem="mcM-Zh-ucq" firstAttribute="top" secondItem="58r-Ma-TBn" secondAttribute="bottom" constant="24" id="g1q-Cq-YGK"/>
-                            <constraint firstItem="mcM-Zh-ucq" firstAttribute="leading" secondItem="1Z7-5E-yZU" secondAttribute="leading" id="jpm-vN-o80"/>
+                            <constraint firstItem="mcM-Zh-ucq" firstAttribute="top" secondItem="1Z7-5E-yZU" secondAttribute="top" id="f81-kM-pIK"/>
                             <constraint firstItem="bxX-3w-Q0Q" firstAttribute="top" secondItem="WfP-3w-1gd" secondAttribute="bottom" constant="167" id="lUn-rw-7my"/>
+                            <constraint firstItem="dIN-IW-5eb" firstAttribute="leading" secondItem="1Z7-5E-yZU" secondAttribute="leading" id="nUD-VC-rak"/>
                             <constraint firstAttribute="trailing" secondItem="ruo-uS-F8l" secondAttribute="trailing" id="tVO-vR-v4Z"/>
+                            <constraint firstItem="mcM-Zh-ucq" firstAttribute="leading" secondItem="1Z7-5E-yZU" secondAttribute="leading" id="w23-5o-ohv"/>
                             <constraint firstItem="58r-Ma-TBn" firstAttribute="centerX" secondItem="1Z7-5E-yZU" secondAttribute="centerX" id="yvV-aJ-qf1"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blueView" destination="bxX-3w-Q0Q" id="y4T-A7-rAX"/>
                         <outlet property="bottomView" destination="ruo-uS-F8l" id="mF7-y4-6EK"/>
+                        <outlet property="enterLink" destination="f8b-DU-qOz" id="JVg-cj-0uB"/>
                         <outlet property="findOnMapButton" destination="eCS-NE-ulG" id="dsA-kq-IdU"/>
+                        <outlet property="mainLabel" destination="58r-Ma-TBn" id="onQ-A4-L4O"/>
+                        <outlet property="mapView" destination="mcM-Zh-ucq" id="l2Z-e7-AY1"/>
+                        <outlet property="submitButton" destination="5T2-hy-xC2" id="BzN-xI-Py8"/>
                         <outlet property="textField" destination="2Ye-kg-T2p" id="AX1-gD-wYM"/>
+                        <outlet property="topView" destination="dIN-IW-5eb" id="Z2E-7a-rJy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5u-Ia-KAC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,7 +240,6 @@
         <!--List-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <viewController id="8rJ-Kc-sve" customClass="ListViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
@@ -279,6 +326,7 @@
                         <segue destination="XeG-9D-V7E" kind="presentation" id="yfi-MM-x5b"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="358"/>
         </scene>
