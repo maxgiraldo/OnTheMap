@@ -44,7 +44,11 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="On The Map" id="loJ-br-h0E">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="eta-kt-amg"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="eta-kt-amg">
+                                            <connections>
+                                                <action selector="logoutButtonTapped:" destination="9pv-A4-QxB" id="gUP-7c-1XL"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="refresh" id="nId-md-HYS">
                                                 <connections>
@@ -255,7 +259,11 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="On The Map" id="0rR-d2-U9h">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="yyb-bx-0z7"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="yyb-bx-0z7">
+                                            <connections>
+                                                <action selector="logoutBarButtonTapped:" destination="8rJ-Kc-sve" id="dfm-cJ-t9W"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="refresh" id="VHW-TN-IKY">
                                                 <connections>
@@ -322,7 +330,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="second" id="cPa-gy-q4n"/>
                     <connections>
-                        <outlet property="logoutBarButtonItemTapped" destination="yyb-bx-0z7" id="8It-xJ-Dx9"/>
                         <outlet property="tableView" destination="opm-gD-kWE" id="nh0-Bc-5B0"/>
                         <segue destination="XeG-9D-V7E" kind="presentation" id="yfi-MM-x5b"/>
                     </connections>
@@ -501,6 +508,6 @@
         <image name="udacity" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pyf-re-9Rs"/>
+        <segue reference="yfi-MM-x5b"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,7 +13,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
   @IBOutlet weak var mapView: MKMapView!
   var users: NSArray?
-  var userLocations: [UserLocation] = []
   let storyboardId = "InformationPosting"
   
   override func viewDidLoad() {
@@ -21,17 +20,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // Do any additional setup after loading the view, typically from a nib.
     
     mapView.delegate = self
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    displayUserLocations()
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
     
-    ParseHelper.sharedInstance.getStudentLocations(100, completion: {
-      (users, error) in
-      if error != nil {
-        print("call back error " + error!)
-        return
-      }
-      
-      self.users = users
-      self.displayUserLocations()
-    })
+    mapView.removeAnnotations(Pin.sharedInstance.userLocations)
   }
   
   //MARK: - Actions
@@ -42,8 +41,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
   }
   
   @IBAction func refreshBarButtonItemTapped(sender: AnyObject) {
+    displayUserLocations()
   }
   
+  @IBAction func logoutButtonTapped(sender: AnyObject) {
+    Udacity.sharedInstance.logout()
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
   //MARK: - MapView delegate
   
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -69,7 +73,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
   }
   
   func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    print("calloutAccessoryControlTapped")
     let userLocation = view.annotation as! UserLocation
     let urlString = userLocation.link
     if let url = NSURL(string: urlString) {
@@ -82,14 +85,29 @@ class MapViewController: UIViewController, MKMapViewDelegate {
   //MARK: - Map data population
   
   func displayUserLocations() {
-    if let users = self.users {
-      for user in users {
-        if let userLocation = UserLocation.fromJSON(user as! NSDictionary) {
-          self.userLocations.append(userLocation)
+    if Pin.sharedInstance.userLocations.count > 0 {
+      mapView.addAnnotations(Pin.sharedInstance.userLocations)
+    } else {
+      ParseHelper.sharedInstance.getStudentLocations(100, completion: {
+        (users, error) in
+        if error != nil {
+          print("call back error " + error!)
+          return
         }
-      }
-      
-      mapView.addAnnotations(userLocations)
+        
+        self.users = users
+        dispatch_async(dispatch_get_main_queue(), {
+          if let users = self.users {
+            for user in users {
+              if let userLocation = UserLocation.fromJSON(user as! NSDictionary) {
+                Pin.sharedInstance.userLocations.append(userLocation)
+              }
+            }
+            
+            self.mapView.addAnnotations(Pin.sharedInstance.userLocations)
+          }
+        })
+      })
     }
   }
   

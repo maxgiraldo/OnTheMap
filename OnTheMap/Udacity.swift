@@ -14,15 +14,6 @@ class Udacity {
   
   private init() {}
   
-  //MARK: - Properties
-  
-  var authenticatedUser = {
-    return [
-      "id": "3384928838",
-      "registered": true
-    ]
-  }
-  
   //MARK: - Methods
   
   func login(email: String, password: String, completion: (user: Dictionary<String, AnyObject>?, errorMessage: String?) -> Void) {
@@ -39,6 +30,26 @@ class Udacity {
         })
         return
       }
+      
+      if let httpResponse = response as? NSHTTPURLResponse, let fields = httpResponse.allHeaderFields as? [String : String] {
+        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(fields, forURL: response!.URL!)
+        NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookies(cookies, forURL: response!.URL!, mainDocumentURL: nil)
+        for cookie in cookies {
+          var cookieProperties = [String: AnyObject]()
+          cookieProperties[NSHTTPCookieName] = cookie.name
+          cookieProperties[NSHTTPCookieValue] = cookie.value
+          cookieProperties[NSHTTPCookieDomain] = cookie.domain
+          cookieProperties[NSHTTPCookiePath] = cookie.path
+          cookieProperties[NSHTTPCookieVersion] = NSNumber(integer: cookie.version)
+          cookieProperties[NSHTTPCookieExpires] = NSDate().dateByAddingTimeInterval(31536000)
+          
+          let newCookie = NSHTTPCookie(properties: cookieProperties)
+          NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(newCookie!)
+          
+          print("name: \(cookie.name) value: \(cookie.value)")
+        }
+      }
+      
       // Ignore 5 characters at beginning used for security purposes
       let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
       let parsedResult: AnyObject!
@@ -115,6 +126,29 @@ class Udacity {
       
     }
     
+    task.resume()
+  }
+  
+  func logout() {
+    let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+    request.HTTPMethod = "DELETE"
+    var xsrfCookie: NSHTTPCookie? = nil
+    let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    for cookie in sharedCookieStorage.cookies! as [NSHTTPCookie] {
+      if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+    }
+    if let xsrfCookie = xsrfCookie {
+      request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+    }
+    let session = NSURLSession.sharedSession()
+    let task = session.dataTaskWithRequest(request) { data, response, error in
+      if error != nil {
+        print("Failed to delete session: \(error!.localizedDescription)")
+        return
+      }
+      let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+      print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+    }
     task.resume()
   }
   

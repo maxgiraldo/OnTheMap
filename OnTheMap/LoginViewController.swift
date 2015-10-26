@@ -73,7 +73,7 @@ class LoginViewController: UIViewController {
   func loadMainView() {
     let tbc = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
     tbc.selectedIndex = 0
-    self.showViewController(tbc, sender: self)
+    self.presentViewController(tbc, animated: true, completion: nil)
   }
   
   //MARK: - Error handling

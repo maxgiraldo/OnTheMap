@@ -14,12 +14,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   let storyboardId = "InformationPosting"
   @IBOutlet weak var tableView: UITableView!
-  var userLocations: [UserLocation] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     getUserLocations()
   }
   
@@ -34,13 +37,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     self.presentViewController(informationPostingViewController, animated: true, completion: nil)
   }
   
-  @IBOutlet weak var logoutBarButtonItemTapped: UIBarButtonItem!
+  @IBAction func logoutBarButtonTapped(sender: AnyObject) {
+    Udacity.sharedInstance.logout()
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
   
   //MARK: - UITableView data source
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
-    let user = userLocations[indexPath.row]
+    let user = Pin.sharedInstance.userLocations[indexPath.row]
     
     cell.textLabel!.text = user.title
     
@@ -48,13 +54,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return userLocations.count
+    return Pin.sharedInstance.userLocations.count
   }
   
   //MARK: - UITableView delegate
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let user = userLocations[indexPath.row]
+    let user = Pin.sharedInstance.userLocations[indexPath.row]
     
     if let url = NSURL(string: user.link) {
       if UIApplication.sharedApplication().canOpenURL(url) {
@@ -66,26 +72,31 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
   //MARK: - Helper methods
   
   func getUserLocations() {
-    ParseHelper.sharedInstance.getStudentLocations(100, completion: {
-      (users, error) in
-      if error != nil {
-        print("call back error " + error!)
-        return
-      }
-      
-      guard let users = users else {
-        print("Couldn't get users. Was probably nil.")
-        return
-      }
-      
-      for user in users {
-        if let userLocation = UserLocation.fromJSON(user as! NSDictionary) {
-          self.userLocations.append(userLocation)
+    if Pin.sharedInstance.userLocations.count > 0 {
+      tableView.reloadData()
+    } else {
+      ParseHelper.sharedInstance.getStudentLocations(100, completion: {
+        (users, error) in
+        if error != nil {
+          print("call back error " + error!)
+          return
         }
-      }
-      
-      self.tableView.reloadData()
-    })
+        
+        guard let users = users else {
+          print("Couldn't get users. Was probably nil.")
+          return
+        }
+        
+        for user in users {
+          if let userLocation = UserLocation.fromJSON(user as! NSDictionary) {
+            Pin.sharedInstance.userLocations.append(userLocation)
+          }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+          self.tableView.reloadData()
+        })
+      })
+    }
   }
 
 }
