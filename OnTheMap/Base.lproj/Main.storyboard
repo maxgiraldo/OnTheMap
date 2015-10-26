@@ -187,6 +187,7 @@
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="findOnMapButtonTapped:" destination="XeG-9D-V7E" eventType="touchUpInside" id="N2E-xR-zcS"/>
+                                    <action selector="submitButtonTapped:" destination="XeG-9D-V7E" eventType="touchUpInside" id="VZc-PI-sVZ"/>
                                 </connections>
                             </button>
                         </subviews>

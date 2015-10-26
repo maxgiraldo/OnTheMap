@@ -41,13 +41,22 @@ class LoginViewController: UIViewController {
     }
     
     Udacity.sharedInstance.login(e, password: p, completion: {
-      (success, error) in
+      (user, error) in
       if error != nil {
         self.loginError(error!)
         return
       }
+      let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
       
-      self.loadMainView()
+      guard let user = user else {return}
+      
+      if let account = user["account"] as? Dictionary<String, AnyObject> {
+        appDelegate.userKey = account["key"] as? String
+        self.loadMainView()
+        return
+      }
+      
+      self.showAlert("Could not log in at this time")
     })
   }
   

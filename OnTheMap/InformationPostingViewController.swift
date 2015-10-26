@@ -31,10 +31,33 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     submitButton.layer.cornerRadius = 4
     submitButton.clipsToBounds = true
     textField.delegate = self
+    enterLink.delegate = self
   }
   
   //MARK: - Actions
     
+  @IBAction func submitButtonTapped(sender: AnyObject) {
+    Udacity.sharedInstance.getAuthenticatedUser { (user, error) in
+      if error != nil {
+        print("error getting user: \(error)")
+        return
+      }
+      let link = self.enterLink.text!
+      let firstName = user!["first_name"]
+      let lastName = user!["last_name"]
+      let fullName = "\(firstName!) \(lastName!)"
+      let userLocation = UserLocation(title: fullName, locationName: self.textField.text!, link: link, coordinate: self.coordinates!)
+      ParseHelper.sharedInstance.addLocation(userLocation, completion: {
+        (success, error) in
+        if error != nil {
+          self.errorAlert(error!)
+          return
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+      })
+    }
+  }
+  
   @IBAction func findOnMapButtonTapped(sender: AnyObject) {
     let location = textField.text!
     print("Searching for " + location)
@@ -89,7 +112,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     let span = MKCoordinateSpanMake(0.1, 0.1)
     let region = MKCoordinateRegionMake(coords, span)
     mapView.addAnnotation(annotation)
-    mapView.region = region
+    mapView.setRegion(region, animated: true)
   }
   
   //MARK: - Helper methods

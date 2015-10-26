@@ -60,6 +60,45 @@ class ParseHelper {
     task.resume()
   }
   
+  func addLocation(userLocation: UserLocation, completion: (Bool, String?) -> Void) {
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let uniqueKey = appDelegate.userKey
+    let fullName = userLocation.title!
+    let fullNameArr = fullName.characters.split{$0 == " "}.map(String.init)
+    let firstName: String = fullNameArr[0]
+    let lastName: String = fullNameArr.count > 1 ? fullNameArr[1] : ""
+    
+    let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+    request.HTTPMethod = "POST"
+    request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+    request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.HTTPBody = "{\"uniqueKey\": \"\(uniqueKey!)\", \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\",\"mapString\": \"\(userLocation.locationName)\", \"mediaURL\": \"\(userLocation.link)\",\"latitude\": \(userLocation.coordinate.latitude), \"longitude\": \(userLocation.coordinate.longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
+    
+    let session = NSURLSession.sharedSession()
+
+    let task = session.dataTaskWithRequest(request) { data, response, error in
+      if error != nil {
+        print("Error adding location: \(error)")
+        completion(false, error!.localizedDescription)
+        return
+      }
+      print("Successfully added location")
+      
+      let parsedResult: AnyObject!
+      do {
+        parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+        print("Result: \(parsedResult)")
+        completion(true, nil)
+      } catch {
+        print("Failed to JSON serialize data object")
+        completion(false, "Failed to add location")
+      }
+
+    }
+    task.resume()
+  }
+  
   //MARK: - Helpers
   
   func escapedParameters(parameters: [String : AnyObject]) -> String {
