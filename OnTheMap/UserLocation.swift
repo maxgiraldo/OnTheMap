@@ -26,4 +26,18 @@ class UserLocation: NSObject, MKAnnotation {
   var subtitle: String? {
     return link
   }
+  
+  static func fromJSON(user: NSDictionary) -> UserLocation? {
+    guard let lat = user.valueForKey("latitude") as? CLLocationDegrees else {return nil}
+    guard let long = user.valueForKey("longitude") as? CLLocationDegrees else {return nil}
+    guard let locationName = user.valueForKey("mapString") as? String else {return nil}
+    guard let firstName = user.valueForKey("firstName") as? String else {return nil}
+    guard let lastName = user.valueForKey("lastName") as? String else {return nil}
+    guard let link = user.valueForKey("mediaURL") as? String else {return nil}
+    
+    let fullName = "\(firstName) \(lastName)"
+    let coordinate = CLLocationCoordinate2DMake(lat, long)
+    
+    return UserLocation(title: fullName, locationName: locationName, link: link, coordinate: coordinate)
+  }
 }

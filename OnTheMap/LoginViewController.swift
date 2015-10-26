@@ -52,9 +52,11 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func signUpButtonTapped(sender: AnyObject) {
-    print("Sign up tapped")
-    let url = NSURL(fileURLWithPath: "https://www.udacity.com/account/auth#!/signup")
-    UIApplication.sharedApplication().openURL(url)
+    if let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup") {
+      if UIApplication.sharedApplication().canOpenURL(url) {
+        UIApplication.sharedApplication().openURL(url)
+      }
+    }
   }
     
   //MARK: - Navigation

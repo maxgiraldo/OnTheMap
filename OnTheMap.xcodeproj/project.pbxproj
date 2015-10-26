@@ -22,6 +22,7 @@
 		508916FF1BDC0000003AF608 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508916FE1BDC0000003AF608 /* MapKit.framework */; };
 		508917011BDC00BB003AF608 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508917001BDC00BB003AF608 /* ParseHelper.swift */; };
 		508917031BDD3B99003AF608 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508917021BDD3B99003AF608 /* UserLocation.swift */; };
+		508917081BDDC682003AF608 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508917071BDDC682003AF608 /* InformationPostingViewController.swift */; };
 		7EC72B83792D887F77CCBD54 /* libPods-OnTheMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5808FDC81E3DED7EC54D37FF /* libPods-OnTheMap.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		508916FE1BDC0000003AF608 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		508917001BDC00BB003AF608 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		508917021BDD3B99003AF608 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		508917071BDDC682003AF608 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		5808FDC81E3DED7EC54D37FF /* libPods-OnTheMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnTheMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BDA3C61037501AB8143D06 /* Pods-OnTheMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C161DB03C1FDFBF940983 /* Pods-OnTheMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				508916E01BDAB2C0003AF608 /* Info.plist */,
 				508916E61BDAB872003AF608 /* LoginViewController.swift */,
 				508916E81BDACD1A003AF608 /* OnTheMap-Bridging-Header.h */,
+				508917071BDDC682003AF608 /* InformationPostingViewController.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				508917031BDD3B99003AF608 /* UserLocation.swift in Sources */,
 				508916D31BDAB2C0003AF608 /* AppDelegate.swift in Sources */,
 				508916FB1BDBF873003AF608 /* Udacity.swift in Sources */,
+				508917081BDDC682003AF608 /* InformationPostingViewController.swift in Sources */,
 				508916ED1BDAD54A003AF608 /* TextField.swift in Sources */,
 				508916D51BDAB2C0003AF608 /* MapViewController.swift in Sources */,
 			);

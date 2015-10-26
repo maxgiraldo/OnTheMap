@@ -13,7 +13,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
   @IBOutlet weak var mapView: MKMapView!
   var users: NSArray?
-
+  var userLocations: [UserLocation] = []
+  let storyboardId = "InformationPosting"
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -30,6 +32,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
       self.users = users
       self.displayUserLocations()
     })
+  }
+  
+  //MARK: - Actions
+  
+  @IBAction func setLocationBarButtonItemTapped(sender: AnyObject) {
+    let informationPostingViewController = self.storyboard!.instantiateViewControllerWithIdentifier(storyboardId) as! InformationPostingViewController
+    self.presentViewController(informationPostingViewController, animated: true, completion: nil)
+  }
+  
+  @IBAction func refreshBarButtonItemTapped(sender: AnyObject) {
   }
   
   //MARK: - MapView delegate
@@ -60,8 +72,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     print("calloutAccessoryControlTapped")
     let userLocation = view.annotation as! UserLocation
     let urlString = userLocation.link
-    let url = NSURL(fileURLWithPath: urlString)
-    UIApplication.sharedApplication().openURL(url)
+    if let url = NSURL(string: urlString) {
+      if UIApplication.sharedApplication().canOpenURL(url) {
+        UIApplication.sharedApplication().openURL(url)
+      }
+    }
   }
   
   //MARK: - Map data population
@@ -69,8 +84,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
   func displayUserLocations() {
     if let users = self.users {
       for user in users {
-        dropPin(user as! NSDictionary)
+        if let userLocation = UserLocation.fromJSON(user as! NSDictionary) {
+          self.userLocations.append(userLocation)
+        }
       }
+      
+      mapView.addAnnotations(userLocations)
     }
   }
   
